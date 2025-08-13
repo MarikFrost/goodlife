@@ -1114,7 +1114,7 @@ header { /* Хедер*/
         margin: 0 75px -68px 0;
     }
     .premium-img {
-        align-items: flex-end;
+        align-items: center;
     }
     .premiumImgTwo{
         width: 191px;
