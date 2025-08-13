@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GoodLife</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./reset.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+<!--Форма авторизації-->
+  <div class="modalLogin hidden">
+      <form action="action" class="autorization">
+        
+        <label for="login" class="autorizationNameLabel">Введіть ваш логін або email</label>
+        <input type="text" name="login" placeholder="Введіть логін" class="autorizationNameInput">
+        <p class="errorNameAutorization"></p>
+
+        <label for="password" class="autorizationPasswordLabel">Введіть ваш пароль</label>
+        <input type="password" name="password" placeholder="Введіть пароль" class="autorizationPasswordInput">
+        <p class="errorPasswordAutorization"></p>
+        <fieldset>
+          <button type="submit" class="autorizationSend buttonFormLigin">Надіслати</button>
+          <button type="button" class="autorizationCancel buttonFormLigin">Скасувати</button>
+        </fieldset>
+        <p class="autorizationSendButton"></p>
+      </form>
+  </div>
+<!--Модальне вікно для бенефітів-->
+<div class="modalBenefits hidden">
+  <div class="benefitsPlanContainer">
+    <img src="./img/close-img.png" alt="" class="close-benefits">
+    <div class="benefitsPlan">
+      <img src="./img/basic.png" alt="Basic" class="planImg">
+      <h3>Базовий план</h3>
+      <ul>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 1
+        </li>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 2
+        </li>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 3
+        </li>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 4
+        </li>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 5
+        </li>
+      </ul>
+      <a class="benefitsBuy" href="https://secure.wayforpay.com/button/bfdbc41942c2e" target="_blank">Придбати</a>
+    </div>
+    <div class="benefitsPlan">
+      <img src="./img/basic.png" alt="Pro" class="planImg">
+      <h3>Професійний план</h3>
+      <ul>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 1
+        </li>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 2
+        </li>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 3
+        </li>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 4
+        </li>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 5
+        </li>
+      </ul>
+      <a class="benefitsBuy" href="https://secure.wayforpay.com/button/bfdbc41942c2e" target="_blank">Придбати</a>
+    </div>
+    <div class="benefitsPlan">
+      <img src="./img/basic.png" alt="Pro" class="planImg">
+      <h3>Ви наша зірочка</h3>
+      <ul>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 1
+        </li>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 2
+        </li>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 3
+        </li>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 4
+        </li>
+        <li>
+          <img src="./img/list.png" alt="done">Бонус 5
+        </li>
+      </ul>
+      <a class="benefitsBuy" href="https://secure.wayforpay.com/button/bfdbc41942c2e" target="_blank">Придбати</a>
+    </div>
+  </div>
+</div>
+<!--Модальне вікно для бенефітів-->
+<!--Модалка Преміум-->
+<div class="premium-more hidden">
+  <div class="premium-modal">
+    <img src="./img/close-img.png" alt="" class="close-premium-more">
+    <img src="./img/logo.svg" alt="" class="avatar-logo">
+    <div class="premium-modal-about">
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+         Voluptatum ducimus, doloremque rem similique nisi, possimus 
+         vel consectetur, nostrum nemo officiis eum voluptates veritatis
+         illo! Repellendus natus praesentium qui iure error!
+         Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+         Voluptatum ducimus, doloremque rem similique nisi, possimus 
+         vel consectetur, nostrum nemo officiis eum voluptates veritatis
+          illo! Repellendus natus praesentium qui iure error!
+      </p>
+      <img src="./img/img-avatar.png" alt="" class="modal-premium-avatar">
+    </div>
+    <h3>Ознайомся з усіма можливостями</h3>
+    <button>Вибери свій план</button>
+  </div>
+</div>
+<!--Модалка Преміум-->
+
+
+  <header>
+    <div class="header-container">
+      <img src="./img/logo.svg" alt="">
+      <div class="nav-container">
+        <nav class="nav">
+          <ul>
+            <li>
+              <a class="mobile-login form-login" href="">login</a>
+            </li>
+            <li>
+              <a href="">Classess</a>
+            </li>
+            <li>
+              <a href="">Timetable</a>
+            </li>
+            <li>
+              <a href="">Clubs</a>
+            </li>
+            <li>
+              <a href="">Nutrition</a>
+            </li>
+            <li>
+              <a href="">Free Trial</a>
+            </li>
+            <li>
+              <a href="">Search</a>
+            </li>
+          </ul>
+        </nav>
+        <input type="text" name="searh" placeholder="Введіть запит" class="search-input hidden">
+        <img src="./img/search_icon.svg" alt="Search" class="search-icon">
+      </div>
+      <a type="button" name="login" class="login-button form-login">login</a>
+      <div class="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="hero-slider-container">
+      <h1>Welcome to Good<span>lyfe</span> Gyms</h1>
+      <a href="" class="hero-benefits">See the benefits</a>
+      <div class="slider-sircle">
+        <div class="count-slide count-slide-hover"></div>
+        <div class="count-slide"></div>
+        <div class="count-slide"></div>
+        <div class="count-slide"></div>
+        <div class="count-slide"></div>
+      </div>
+
+      <div class="border-decoration"></div>
+      <div class="slide-hero">
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+      </div>
+    </section>
+    <section class="newBodySection">
+      <div class="newBodyContainer">
+        <div class="newBodyImg">
+          <div class="newBodyImgOne"></div>
+          <div class="newBodyImgTwo"></div>
+        </div>
+        <div class="newBodyContent">
+          <h2>Meet your new body</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget lectus urna. 
+            Nulla magna tortor, bibendum in molestie sed, gravida nec felis. Sed id egestasegestas
+            risus, ut imperdiet augue.
+          </p>
+          <button class="FAQ">View the FAQ</button>
+        </div>
+      </div>
+      <div class="questionsBlock hidden">
+        <img src="./img/close-img.png" alt="" class="questionsBlockClose">
+        <div class="questionsContainer">
+          <div class="question">
+            <h2>Вопрос 1</h2>
+            <img src="./img/question.png" alt="open more">
+          </div>
+          <div class="answer">
+            <p>Ответ на вопрос 1</p>
+          </div>
+
+          <div class="question">
+            <h2>Вопрос 2</h2>
+            <img src="./img/question.png" alt="open more">
+          </div>
+          <div class="answer">
+            <p>Ответ на вопрос 2</p>
+          </div>
+
+          <div class="question">
+            <h2>Вопрос 3</h2>
+            <img src="./img/question.png" alt="open more">
+          </div>
+          <div class="answer">
+            <p>Ответ на вопрос 3</p>
+          </div>
+
+          <div class="question">
+            <h2>Вопрос 4</h2>
+            <img src="./img/question.png" alt="open more">
+          </div>
+          <div class="answer">
+            <p>Ответ на вопрос 4</p>
+          </div>
+
+          <div class="question">
+            <h2>Вопрос 5</h2>
+            <img src="./img/question.png" alt="open more">
+          </div>
+          <div class="answer">
+            <p>Ответ на вопрос 5</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="staying-slider-container">
+      <div class="staying-slider-content">
+        <h2>Become more than you are.</h2>
+        <p>Staying active is great fun and keeps you healthy. 
+          Check out how you can join in.
+        </p>
+        <a href="" class="staying-benefits">Let’s do it!</a>
+      </div>
+      <div class="staying-slider-sircle">
+        <div class="count-slide-staying count-slide-staying-hover"></div>
+        <div class="count-slide-staying"></div>
+        <div class="count-slide-staying"></div>
+        <div class="count-slide-staying"></div>
+        <div class="count-slide-staying"></div>
+      </div>
+
+      <div class="slider-staying-block">
+        <div class="slide-staying"></div>
+        <div class="slide-staying"></div>
+        <div class="slide-staying"></div>
+        <div class="slide-staying"></div>
+      </div>
+    </section>
+    <section class="premium">
+      <div class="premium-container">
+        <div class="premium-content">
+          <h2>Premium Facilities</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Vivamus eget lectus urna. Nulla magna tortor, bibendum in 
+            molestie sed, gravida nec felis. Sed id egestasegestas 
+            risus, ut imperdiet augue.
+          </p>
+          <button class="open-premium-modal">Learn more</button>
+        </div>
+        <div class="premium-img">
+          <img src="./img/premiumImgOne.png" alt="" class="premiumImgOne">
+          <img src="./img/premiumImgTwo.png" alt="" class="premiumImgTwo">
+        </div>
+      </div>
+    </section>
+    <section class="stories-section">
+      <div class="stories-container">
+        <div class="stories-text">
+          <h4>Real Stories from Real Customers</h4>
+          <p>Be inspired with these experiences.</p>
+        </div>
+        <div class="review-users one">
+            <div>
+              <h5>3Kg lost!</h5>
+              <div class="review-users-text">
+                <span>“</span>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing 
+                  elit. Vivamus eget lectus urna. Nulla magna tortor, 
+                  bibendum in molestie sed, gravida nec felis. Sed id 
+                  egestasegestas risu. 
+                </p>
+              </div>
+            </div>
+            <div class="stories-user-info">
+              <img src="./img/user-one.png" alt="">
+              <h6>James John</h6>
+              <p>Mother of two</p>
+            </div>
+        </div>
+
+        <div class="review-users two">
+            <div>
+              <h5>17Kg lost!</h5>
+              <div class="review-users-text">
+                <span>“</span>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                  Vivamus eget lectus urna. Nulla magna tortor, bibendum 
+                  in mo.
+                </p>
+              </div>
+            </div>
+            <div class="stories-user-info">
+              <img src="./img/user-two.png" alt="">
+              <h6>Mary Patricia</h6>
+              <p>Mother of two</p>
+            </div>
+        </div>
+
+        <div class="review-users three">
+            <div>
+              <h5>43Kg lost!</h5>
+              <div class="review-users-text">
+                <span>“</span>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+              </div>
+            </div>
+            <div class="stories-user-info">
+              <img src="./img/user-three.png" alt="">
+              <h6>Robert Micheal</h6>
+              <p>Mother of two</p>
+            </div>
+        </div>
+      </div>
+    </section>
+    <section class="pro"></section>
+  </main>
+</body>
+</html>
