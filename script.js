@@ -341,12 +341,12 @@ const storiesMove = () => {
     if(countStoriesIndex >= allReviewUsers.length) {
         countStoriesIndex = 0
     }
-    else {
+
         const offsetStories = -countStoriesIndex * (widthElement + 30)
         console.log(offsetStories)
         newReviewUsers.style.transform = `translateX(${offsetStories}px)`
         countStoriesIndex++
-    }
-    
+
 }
-setInterval(storiesMove, 1000)
+storiesMove()
+setInterval(storiesMove, 3000)

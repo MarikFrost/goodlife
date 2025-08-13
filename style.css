@@ -1043,6 +1043,7 @@ header { /* Хедер*/
         gap: 30px;
         padding-bottom: 38px;
         overflow: visible;
+        transition: transform 1s ease-in-out;
     }
 }
 @media(max-width: 800px) {
