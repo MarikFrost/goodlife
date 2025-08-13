@@ -129,7 +129,7 @@
 
   <header>
     <div class="header-container">
-      <img src="./img/logo.svg" alt="">
+      <img src="./img/logo.svg" class="logoCompany">
       <div class="nav-container">
         <nav class="nav">
           <ul>
@@ -156,8 +156,10 @@
             </li>
           </ul>
         </nav>
-        <input type="text" name="searh" placeholder="Введіть запит" class="search-input hidden">
-        <img src="./img/search_icon.svg" alt="Search" class="search-icon">
+        <div class="wrapperSearch">
+          <input type="text" name="searh" placeholder="Введіть запит" class="search-input hidden">
+          <img src="./img/search_icon.svg" alt="Search" class="search-icon">
+        </div>
       </div>
       <a type="button" name="login" class="login-button form-login">login</a>
       <div class="burger">
@@ -204,8 +206,9 @@
         </div>
       </div>
       <div class="questionsBlock hidden">
-        <img src="./img/close-img.png" alt="" class="questionsBlockClose">
+       
         <div class="questionsContainer">
+           <img src="./img/close-img.png" alt="" class="questionsBlockClose">
           <div class="question">
             <h2>Вопрос 1</h2>
             <img src="./img/question.png" alt="open more">

@@ -320,12 +320,33 @@ openPremiumModal.addEventListener('click', () => {
     premiumMore.classList.remove('hidden')
 })
 /********************************************* */
-/*const storiesContainer = document.querySelector('.stories-container')
+
+const storiesText = document.querySelector('.stories-text')
+const newReviewUsers = document.createElement('div')
+const allReviewUsers = document.querySelectorAll('.review-users')
+let widthElement = 0
+storiesText.after(newReviewUsers)
+newReviewUsers.classList.add('newReviewUsers')
+
+allReviewUsers.forEach(el => {
+    newReviewUsers.append(el)
+    widthElement = window.getComputedStyle(el).width
+    
+})
+widthElement = parseInt(widthElement);
+
 let countStoriesIndex = 0
 
 const storiesMove = () => {
-    const offsetStories = -countStoriesIndex * 100
-    storiesContainer.style.transform = `translateX(${offsetStories}px)`
-countStoriesIndex++
+    if(countStoriesIndex >= allReviewUsers.length) {
+        countStoriesIndex = 0
+    }
+    else {
+        const offsetStories = -countStoriesIndex * (widthElement + 30)
+        console.log(offsetStories)
+        newReviewUsers.style.transform = `translateX(${offsetStories}px)`
+        countStoriesIndex++
+    }
+    
 }
-setInterval(storiesMove, 1000)*/
+setInterval(storiesMove, 1000)
