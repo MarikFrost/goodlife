@@ -1295,13 +1295,14 @@ footer {
     }
     /************************************/
     .benefitsPlanContainer {
-        grid-template-columns: 1fr;
+        grid-template-columns: 70vw;
         grid-template-rows: auto;
         justify-items: center;
         padding: 50px 20px 30px 20px;
+        gap: 50px;
     }
     .benefitsPlan{
-        width: 200px;
+        width: 100%;
     }
     .newBodyContent {
         padding-left: 10px;
@@ -1365,9 +1366,14 @@ footer {
     .premium-img {
         align-items: center;
     }
+    .premiumImgOne{
+        align-self: flex-start;
+
+    }
     .premiumImgTwo{
         width: 191px;
         height: 128px;
+        align-self: flex-end;
     }
     .premium-content h2{
         text-align: center;
@@ -1438,7 +1444,6 @@ footer {
     }
     .google-play{
         margin-right: 0;
-        margin-bottom: 10px;
     }
     /******************************/
     .social-block{
