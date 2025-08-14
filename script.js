@@ -322,31 +322,44 @@ openPremiumModal.addEventListener('click', () => {
 /********************************************* */
 
 const storiesText = document.querySelector('.stories-text')
+const html = document.querySelector('html')
 const newReviewUsers = document.createElement('div')
 const allReviewUsers = document.querySelectorAll('.review-users')
 let widthElement = 0
-storiesText.after(newReviewUsers)
-newReviewUsers.classList.add('newReviewUsers')
 
-allReviewUsers.forEach(el => {
-    newReviewUsers.append(el)
-    widthElement = window.getComputedStyle(el).width
-    
-})
-widthElement = parseInt(widthElement);
-
-let countStoriesIndex = 0
-
-const storiesMove = () => {
-    if(countStoriesIndex >= allReviewUsers.length) {
-        countStoriesIndex = 0
+    if(window.innerWidth <= 900) {
+        storiesText.after(newReviewUsers)
+        newReviewUsers.classList.add('newReviewUsers')
+        allReviewUsers.forEach(el => {
+            newReviewUsers.append(el)
+            widthElement = window.getComputedStyle(el).width
+            el.classList.remove('hidden')
+        })
     }
+    if(window.innerWidth < 800) {
+        widthElement = parseInt(widthElement)
+        const storiesMove = () => {
+            const firstReviewUser = newReviewUsers.firstElementChild
+            const newLastReviewUser = firstReviewUser.cloneNode(true)
 
-        const offsetStories = -countStoriesIndex * (widthElement + 30)
-        console.log(offsetStories)
-        newReviewUsers.style.transform = `translateX(${offsetStories}px)`
-        countStoriesIndex++
+            newReviewUsers.append(newLastReviewUser)
 
-}
-storiesMove()
-setInterval(storiesMove, 3000)
+            newReviewUsers.style.transition = 'none';
+            newReviewUsers.style.transform = `translateX(${0}px)`
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    newReviewUsers.style.transition = 'transform 1s ease-in-out';
+                    let offsetReview = (widthElement + 25) * (-1)
+                    newReviewUsers.style.transform = `translateX(${offsetReview}px)`
+                    setTimeout(() => {
+                        newReviewUsers.style.transition = 'none';
+                        newReviewUsers.style.transform = `translateX(${0}px)`
+                        firstReviewUser.remove();
+                    }, 1000);
+                })
+            }) 
+        }
+        setInterval(storiesMove, 3000)
+    }
+/*************************************************** */
