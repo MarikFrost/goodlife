@@ -360,7 +360,6 @@ header { /* Хедер*/
     overflow: hidden;
     position: relative;
     min-height: 400px;
-   /* min-width: 320px;*/
 }
 .hero-slider-container h1 {
     position: absolute;
@@ -443,11 +442,16 @@ header { /* Хедер*/
     flex-shrink: 0;
     width: 100%;
     aspect-ratio: 1440/704;
-    background-image: url(./img/oneImg.png);
     background-size: cover;
     background-position: center;
     max-height: 705px; 
     min-height: 400px;
+}
+.slide-hero-one {
+    background-image: url(./img/oneImg.jpg);
+}
+.slide-hero-two {
+    background-image: url(./img/threeImgBig.jpg);
 }
 /************************************/
 .newBodySection{
@@ -462,14 +466,14 @@ header { /* Хедер*/
     gap: 50px;
 }
 .newBodyImgOne {
-    background-image: url(./img/twoImg.png);
+    background-image: url(./img/twoImg.jpg);
     background-size: contain;
     background-repeat: no-repeat;
     width: 347px;
     height: 399px;
 }
 .newBodyImgTwo{
-    background-image: url(./img/threeImgSmall.png);
+    background-image: url(./img/threeImgSmall.jpg);
     background-size: contain;
     background-repeat: no-repeat;
     width: 241px;
@@ -519,7 +523,6 @@ header { /* Хедер*/
     overflow: hidden;
     position: relative;
     min-height: 400px;
-   /* min-width: 320px;*/
 }
 .staying-slider-content {
     width: 90%;
@@ -594,7 +597,7 @@ header { /* Хедер*/
     flex-shrink: 0;
     width: 100%;
     aspect-ratio: 1440/704;
-    background-image: url(./img/threeImgBig.png);
+    background-image: url(./img/threeImgBig.jpg);
     background-size: cover;
     background-position: center;
     max-height: 705px; 
@@ -1368,7 +1371,6 @@ footer {
     }
     .premiumImgOne{
         align-self: flex-start;
-
     }
     .premiumImgTwo{
         width: 191px;
