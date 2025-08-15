@@ -1,17 +1,25 @@
+import slideModule from './../modules/myCustomSlider.mjs'
+
+/*********************Кнопка пошуку********************/
 const searchButton = document.querySelector('.search-icon')
 const searchInput = document.querySelector('.search-input')
-const burgerMenu = document.querySelector('.burger')
-const mobileMenu = document.querySelector('.nav')
-
-/*Кнопка пошуку*/
+/*Відкриття пошуку*/
 searchButton.addEventListener('click', (event) => {
         event.stopPropagation();
         searchInput.classList.toggle('hidden')
         searchInput.focus()
 })
-/*Кінець кнопки пошуку */
+/*Закриття пошуку */
+document.addEventListener('click', (event) => {
+    if (!event.target.closest('.search-input') && !event.target.closest('.search-icon')) {
+        searchInput.classList.add('hidden');
+    }
+})
+/*******************Кінець кнопки пошуку *********************/
 
-/*Бургер меню */
+/******************************Бургер меню****************/
+const burgerMenu = document.querySelector('.burger')
+const mobileMenu = document.querySelector('.nav')
 burgerMenu.addEventListener('click', () => {
     const display = window.getComputedStyle(mobileMenu).display;
     if (display === 'none') {
@@ -20,52 +28,17 @@ burgerMenu.addEventListener('click', () => {
         mobileMenu.style.display = 'none';
     }
 })
-/*********************************************** */
-/*Кінець бургер меню */
-document.addEventListener('click', (event) => {
-    if (!event.target.closest('.search-input') && !event.target.closest('.search-icon')) {
-        searchInput.classList.add('hidden');
-    }
-})
+/******************************Кінець бургер меню **************/
 
-
-
-
-
-
-
-/*Слайдер перший */
-const heroSliderContainer = document.querySelector('.hero-slider-container')
+/*********************Слайдер перший ********************/
 const slideHero = document.querySelector('.slide-hero')
-const slides = document.querySelectorAll('.slide') 
 const arrayCountSlider = document.querySelectorAll('.count-slide')
-let indexSlider = 0
 let contIndex = 0
 
-
-const slidePosition = () => {
-    const offset = -indexSlider * 100
-    slideHero.style.transform = `translateX(${offset}%)`
-}
-const nextSlide = () => {
+slideModule(slideHero, 4, 0.5)
+setInterval(() => {
     countSlide(arrayCountSlider)
-    indexSlider++
-    
-    if(indexSlider >= slides.length) {
-        indexSlider = 0
-        slideHero.style.transition = 'none'
-        slidePosition()
-        setTimeout(() => {
-            slideHero.style.transition = 'transform 0.5s ease-in-out'
-            indexSlider = 1;
-            slidePosition()
-        }, 5)
-    } else {
-        slidePosition()
-    }
-}
-setInterval(nextSlide, 4000)
-/* слайдер перший*/
+}, 4000)
 
 /*Точки на слайдері */
 const countSlide = (array) => {
@@ -79,10 +52,9 @@ const countSlide = (array) => {
     } 
     array[contIndex].classList.add('count-slide-hover')
 }
-/* Кінець точок на слайдері*/
+/*********************Слайдер перший ********************/
 
-/**************************************************** */
-/*Перевірка форми*/
+/************************Перевірка форми login********************/
 const modalWindow = document.querySelector('body') /*БОДІ для модального вікна*/
 const modalButtonLogin = document.querySelectorAll('.form-login') /*кнопка login*/
 const modalLogin = document.querySelector('.modalLogin') /*модальне вікно на весь екран*/
@@ -99,7 +71,6 @@ let autorizationPassword = true /*Якщо немає помилки у паро
 
 
 /*При кліку на кнопку login */
-
 modalButtonLogin.forEach(el => {
     el.addEventListener('click', (event) => {
         event.preventDefault()
@@ -111,7 +82,6 @@ modalButtonLogin.forEach(el => {
     })
 })  
 
-/***************************************/
 /*При натискані на кнопку скасувати */
 autorizationCancel.addEventListener('click', () => {
     modalLogin.classList.add('hidden')
@@ -126,7 +96,7 @@ autorizationCancel.addEventListener('click', () => {
     errorPasswordAutorization.textContent = '';
     autorizationSendButton.textContent = '';
 })
-/*************************************** */
+
 /*ФУНКЦІЯ ДЛЯ ПЕРЕВІРКИ ПРАВИЛЬНОСТІ ВВОДА У ПОЛЯ ЛОГІН ТА ПАРОЛЬ*/
 const autorizationCheck = (event) => {
     if(event) {
@@ -166,12 +136,12 @@ const autorizationCheck = (event) => {
         }
     }
 }
-/***************************************** */
+
 /*Якщо фокус уходить, тоді викликаємо вункцію перевірки*/
 autorizationForm.addEventListener('focusout', (event) => {
     autorizationCheck(event)
 })
-/*************************************************** */
+
 /*При натисканні кнопки надіслати */
 autorizationSend.addEventListener('click', (event) => {
     event.preventDefault()
@@ -180,7 +150,7 @@ autorizationSend.addEventListener('click', (event) => {
         autorizationSendButton.textContent = 'Данні відправлені, дякуємо'
     }
 })
-/*********************************** */
+
 /*Коли фокус находить на елемет обнуляємо помилки */
 autorizationForm.addEventListener('focusin', (event) => {
     if(event.target === autorizationNameInput || event.target === autorizationPasswordInput) {
@@ -189,8 +159,9 @@ autorizationForm.addEventListener('focusin', (event) => {
         autorizationSendButton.textContent = ''
     } 
 })
-/*Закрити модальне вікно бенефитов*/
-/*Тарифні плани, модалка*/
+/************************Перевірка форми login********************/
+
+/********************Тарифні плани, модалка*****************/
 const closeBenefits = document.querySelector('.close-benefits')
 const modalBenefits = document.querySelector('.modalBenefits')
 const heroBenefits = document.querySelector('.hero-benefits')
@@ -206,12 +177,11 @@ closeBenefits.addEventListener('click', () => {
     modalBenefits.classList.add('hidden')
     modalWindow.classList.remove('modal-open')
 })
-/*Тарифні плани модалка */
+/************************Тарифні плани модалка******************/
 
-/*Аккордеон птання/відповідь*/
+/******************Аккордеон птання/відповідь***************/
 const questionsBlock = document.querySelector('.questionsBlock')
 const questionAccordeon = document.querySelectorAll('.question')
-const answerAccordeon = document.querySelector('.answer')
 const faqButton = document.querySelector('.FAQ')
 
 faqButton.addEventListener('click', () => {
@@ -233,40 +203,17 @@ const questionsBlockClose = document.querySelector('.questionsBlockClose')
 questionsBlockClose.addEventListener('click', () => {
     questionsBlock.classList.add('hidden')
 })
-/*Аккордеон птання/відповідь*/    
+/******************Аккордеон птання/відповідь*****************/    
 
-/*слайдер второй*/ /*********************************НУЖНО В ФУНКЦИИ */
-const stayingSliderContainer = document.querySelector('.staying-slider-container')
+/***************************Cлайдер второй********************/ 
 const sliderStayingBlock = document.querySelector('.slider-staying-block')
-const slideStaying = document.querySelectorAll('.slide-staying') 
 const countSlideStaying = document.querySelectorAll('.count-slide-staying')
-let indexStaying = 0
 let contIndexStaying = 0
 
-
-const slidePositionStaying = () => {
-    const offset = -indexStaying * 100
-    sliderStayingBlock.style.transform = `translateX(${offset}%)`
-}
-const nextSlideStaying = () => {
+slideModule(sliderStayingBlock, 3, 0.5)
+setInterval(() => {
     countStaying(countSlideStaying)
-    indexStaying++
-    
-    if(indexStaying >= slideStaying.length) {
-        indexStaying = 0
-        sliderStayingBlock.style.transition = 'none'
-        slidePositionStaying()
-        setTimeout(() => {
-            sliderStayingBlock.style.transition = 'transform 0.5s ease-in-out'
-            indexStaying = 1;
-            slidePositionStaying()
-        }, 5)
-    } else {
-        slidePositionStaying()
-    }
-}
-setInterval(nextSlideStaying, 3000)
-/* слайдер перший*/
+}, 3000)
 
 /*Точки на слайдері */ 
 const countStaying = (array) => {
@@ -280,11 +227,9 @@ const countStaying = (array) => {
     } 
     array[contIndexStaying].classList.add('count-slide-staying-hover')
 }
-/*слайдер второй*/
+/***************************Cлайдер второй********************/ 
 
-/*Тарифні плани, модалка*/ /**********************НУЖНО В ФУНКЦИЮ */
-/*const closeBenefits = document.querySelector('.close-benefits')*/
-/*const modalBenefits = document.querySelector('.modalBenefits')*/
+/************************Тарифні плани, модалка**************/ 
 const stayingBenefits = document.querySelector('.staying-benefits')
 
 stayingBenefits.addEventListener('click', (event) => {
@@ -298,9 +243,9 @@ closeBenefits.addEventListener('click', () => {
     modalBenefits.classList.add('hidden')
     modalWindow.classList.remove('modal-open')
 })
-/*Тарифні плани модалка */
+/*******************Тарифні плани модалка**************/
 
-/*Модалка для See more*/
+/*******************Модалка для See more***************/
 const closePremiumModal = document.querySelector('.close-premium-more')
 const premiumMore = document.querySelector('.premium-more')
 const buttonPlanInModalPremium = document.querySelector('.premium-modal > button')
@@ -319,47 +264,23 @@ openPremiumModal.addEventListener('click', () => {
     modalWindow.classList.add('modal-open')
     premiumMore.classList.remove('hidden')
 })
-/********************************************* */
+/*******************Модалка для See more***************/
 
+/**************Слайдер Review************* */
 const storiesText = document.querySelector('.stories-text')
-const html = document.querySelector('html')
 const newReviewUsers = document.createElement('div')
 const allReviewUsers = document.querySelectorAll('.review-users')
-let widthElement = 0
-
-    if(window.innerWidth <= 900) {
-        storiesText.after(newReviewUsers)
-        newReviewUsers.classList.add('newReviewUsers')
-        allReviewUsers.forEach(el => {
-            newReviewUsers.append(el)
-            widthElement = window.getComputedStyle(el).width
-            el.classList.remove('hidden')
-        })
-    }
-    if(window.innerWidth < 800) {
-        widthElement = parseInt(widthElement)
-        const storiesMove = () => {
-            const firstReviewUser = newReviewUsers.firstElementChild
-            const newLastReviewUser = firstReviewUser.cloneNode(true)
-
-            newReviewUsers.append(newLastReviewUser)
-
-            newReviewUsers.style.transition = 'none';
-            newReviewUsers.style.transform = `translateX(${0}px)`
-
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    newReviewUsers.style.transition = 'transform 1s ease-in-out';
-                    let offsetReview = (widthElement + 25) * (-1)
-                    newReviewUsers.style.transform = `translateX(${offsetReview}px)`
-                    setTimeout(() => {
-                        newReviewUsers.style.transition = 'none';
-                        newReviewUsers.style.transform = `translateX(${0}px)`
-                        firstReviewUser.remove();
-                    }, 1000);
-                })
-            }) 
-        }
-        setInterval(storiesMove, 3000)
-    }
-/*************************************************** */
+//додаємо блок та переміщуємо туди елементи для слайдеру
+if(window.innerWidth <= 900) {
+    storiesText.after(newReviewUsers)
+    newReviewUsers.classList.add('newReviewUsers')
+    allReviewUsers.forEach(el => {
+        newReviewUsers.append(el)
+        el.classList.remove('hidden')
+    })
+}
+//Запускаємо слайдер
+ if(window.innerWidth < 800) {
+    slideModule(newReviewUsers, 3, 1)
+ }
+/**************Слайдер Review************* */

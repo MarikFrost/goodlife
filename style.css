@@ -597,11 +597,16 @@ header { /* Хедер*/
     flex-shrink: 0;
     width: 100%;
     aspect-ratio: 1440/704;
-    background-image: url(./img/threeImgBig.jpg);
     background-size: cover;
     background-position: center;
     max-height: 705px; 
     min-height: 443px;
+}
+.slide-staying-one{
+    background-image: url(./img/threeImgBig.jpg);
+}
+.slide-staying-two{
+    background-image: url(./img/oneImg.jpg);
 }
 /***************************************/
 .premium {
@@ -1443,6 +1448,7 @@ footer {
     }
     .download-block{
         text-align: center;
+        margin: 0 auto;
     }
     .google-play{
         margin-right: 0;
