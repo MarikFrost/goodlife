@@ -1,5 +1,5 @@
-//import slideModule from './../modules/myCustomSlider.mjs'
-
+import slideModule from './../modules/myCustomSlider.mjs'
+import automaticSliderWithManualControl from './../modules/AutoHandSlider.mjs'
 /*********************Кнопка пошуку********************/
 const searchButton = document.querySelector('.search-icon')
 const searchInput = document.querySelector('.search-input')
@@ -33,25 +33,8 @@ burgerMenu.addEventListener('click', () => {
 /*********************Слайдер перший ********************/
 const slideHero = document.querySelector('.slide-hero')
 const arrayCountSlider = document.querySelectorAll('.count-slide')
-let contIndex = 0
 
-//slideModule(slideHero, 4, 0.5)
-setInterval(() => {
-    countSlide(arrayCountSlider)
-}, 4000)
-
-/*Точки на слайдері */
-const countSlide = (array) => {
-    contIndex++
-    if(contIndex >= array.length) {
-        array[contIndex - 1].classList.remove('count-slide-hover')
-       contIndex = 0 
-       array[contIndex].classList.add('count-slide-hover')
-    } else if(contIndex > 0) {
-        array[contIndex - 1].classList.remove('count-slide-hover')
-    } 
-    array[contIndex].classList.add('count-slide-hover')
-}
+automaticSliderWithManualControl(arrayCountSlider, slideHero, 'count-slide-hover', 4, 0.5)
 /*********************Слайдер перший ********************/
 
 /************************Перевірка форми login********************/
@@ -208,25 +191,8 @@ questionsBlockClose.addEventListener('click', () => {
 /***************************Cлайдер второй********************/ 
 const sliderStayingBlock = document.querySelector('.slider-staying-block')
 const countSlideStaying = document.querySelectorAll('.count-slide-staying')
-let contIndexStaying = 0
 
-//slideModule(sliderStayingBlock, 3, 0.5)
-setInterval(() => {
-    countStaying(countSlideStaying)
-}, 3000)
-
-/*Точки на слайдері */ 
-const countStaying = (array) => {
-    contIndexStaying++
-    if(contIndexStaying >= array.length) {
-        array[contIndexStaying - 1].classList.remove('count-slide-staying-hover')
-       contIndexStaying = 0 
-       array[contIndexStaying].classList.add('count-slide-staying-hover')
-    } else if(contIndexStaying > 0) {
-        array[contIndexStaying - 1].classList.remove('count-slide-staying-hover')
-    } 
-    array[contIndexStaying].classList.add('count-slide-staying-hover')
-}
+automaticSliderWithManualControl(countSlideStaying, sliderStayingBlock, 'count-slide-staying-hover', 4, 0.5)
 /***************************Cлайдер второй********************/ 
 
 /************************Тарифні плани, модалка**************/ 
@@ -281,111 +247,15 @@ if(window.innerWidth <= 900) {
 }
 //Запускаємо слайдер
  if(window.innerWidth < 800) {
-    //slideModule(newReviewUsers, 3, 1)
+    slideModule(newReviewUsers, 3, 1)
  }
 /**************Слайдер Review************* */
 
 
+
 const containetSlider = document.querySelector('.containetSlider')
-const testItem = document.querySelectorAll('.testItem')
 const countTest = document.querySelectorAll('.countTest')
-let indexTest = 0
-let inst = 0
-let offset = 0
-let firstChild
-let newFirstChild
-let widthSlide
 
-//Сравниваем индекси натисків з автоматичними. Та присваюємо
-const clickEl = (countTest, containetSlider) => {
-    countTest.forEach((el, index) => {
-        el.addEventListener('click', (event) =>{
-            event.preventDefault()
-            updateClass(countTest, index)
-            updateList(containetSlider, index)
-            indexTest = index
-            inst = index
-        })
-    })  
-}
-//реакція автоматичного переліку на клік
-const updateClass = (array, index) => {
-    array.forEach((el, i) => {
-        if(index === i) {
-            el.classList.add('active')
-        } else {
-            el.classList.remove('active')
-        }
-    })
-}
-//реакція автоматичного слайдеру на клік
-const updateList = (array, index) => {
-    Array.from(array.children).forEach((el, i) => {
-        if(index === i) {
-            let gap = parseInt (window.getComputedStyle(array).gap) 
-            if(isNaN(gap)) { 
-                gap = 0
-            }
-            for(let a = 0; a <= i; a++) {
-                let widthSlide = parseInt(window.getComputedStyle(array.children[a]).width)
-                const firstChild = array.children[a]
-                const newFirstChild = firstChild.cloneNode(true)
-                array.append(newFirstChild)
-                array.style.transition = 'transform 0.2s ease-in-out'
-                offset = (widthSlide + gap) * -(index)
-                array.style.transform = `translateX(${offset}px)`
-            }    
-        }
-    })
-}
-
-//Автоматичний слайдер
-const countTestFunc = (countTest, containetSlider, testItem) => {
-    inst++
-    indexTest++
-
-    if(indexTest >= countTest.length) {
-        countTest[indexTest - 1].classList.remove('active')
-        indexTest = 0 
-        countTest[indexTest].classList.add('active') 
-    } else if (indexTest > 0) {
-        countTest[indexTest - 1].classList.remove('active')
-        countTest[indexTest].classList.add('active')
-    }    
-
-    if(inst > containetSlider.children.length) {
-        setTimeout(() =>{ 
-            containetSlider.style.transition = 'none'; 
-            containetSlider.style.transform = `translateX(${0}px)` 
-            for(let i = containetSlider.length - 1; i >= 0; i--) {
-                containetSlider.children[i].remove()
-            }
-        }, 1)
-        inst = 0
-        offset = 0 
-    } else if(inst > 0) {
-        let gap = parseInt (window.getComputedStyle(containetSlider).gap) 
-        if(isNaN(gap)) { 
-            gap = 0
-        }
-        if(inst === 1) {
-            widthSlide = parseInt(window.getComputedStyle(containetSlider.children[inst - 1]).width)
-            firstChild = containetSlider.children[inst - 1]
-            newFirstChild = firstChild.cloneNode(true)
-            containetSlider.append(newFirstChild)
-        }
-        widthSlide = parseInt(window.getComputedStyle(containetSlider.children[inst]).width)
-        firstChild = containetSlider.children[inst]
-        newFirstChild = firstChild.cloneNode(true)
-        containetSlider.append(newFirstChild)
-        containetSlider.style.transition = 'transform 0.5s ease-in-out'
-        offset = (widthSlide + gap) * -(inst)
-        containetSlider.style.transform = `translateX(${offset}px)`
-    }   
-} 
+automaticSliderWithManualControl(countTest, containetSlider, 4, 0.5)
 
 
-setInterval(() => {
-    countTestFunc(countTest, containetSlider, testItem)
-}, 4000)
-clickEl(countTest, containetSlider)
