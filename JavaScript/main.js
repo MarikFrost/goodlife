@@ -236,19 +236,37 @@ openPremiumModal.addEventListener('click', () => {
 const storiesText = document.querySelector('.stories-text')
 const newReviewUsers = document.createElement('div')
 const allReviewUsers = document.querySelectorAll('.review-users')
+
 //додаємо блок та переміщуємо туди елементи для слайдеру
-if(window.innerWidth <= 900) {
-    storiesText.after(newReviewUsers)
-    newReviewUsers.classList.add('newReviewUsers')
-    allReviewUsers.forEach(el => {
-        newReviewUsers.append(el)
-        el.classList.remove('hidden')
-    })
+const vp900 = window.matchMedia('(max-width: 900px)')
+
+const widthChange900 = (e) => {
+    if(e.matches){
+        storiesText.after(newReviewUsers)
+        newReviewUsers.classList.add('newReviewUsers')
+        allReviewUsers.forEach(el => {
+            newReviewUsers.append(el)
+        })
+    } else {
+        newReviewUsers.classList.remove('newReviewUsers')
+        allReviewUsers.forEach(el => {
+            storiesText.after(el)
+        })
+        newReviewUsers.remove()
+    }
 }
-//Запускаємо слайдер
- if(window.innerWidth < 800) {
-    slideModule(newReviewUsers, 3, 1)
- }
+widthChange900(vp900)
+vp900.addEventListener("change", widthChange900);
+
+//на 800 запускаємо слайдер
+const vp800 = window.matchMedia('(max-width: 800px)')
+const widthChange800 = (e) => {
+    if(e.matches){
+        slideModule(newReviewUsers, 3, 1)
+    }
+}
+widthChange800(vp800)
+vp800.addEventListener("change", widthChange800);
 /**************Слайдер Review************* */
 
 
