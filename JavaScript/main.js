@@ -284,3 +284,108 @@ if(window.innerWidth <= 900) {
     slideModule(newReviewUsers, 3, 1)
  }
 /**************Слайдер Review************* */
+
+
+const containetSlider = document.querySelector('.containetSlider')
+const testItem = document.querySelectorAll('.testItem')
+const countTest = document.querySelectorAll('.countTest')
+let indexTest = 0
+let inst = 0
+let offset = 0
+let firstChild
+let newFirstChild
+let widthSlide
+
+//Сравниваем индекси натисків з автоматичними. Та присваюємо
+const clickEl = (countTest, containetSlider) => {
+    countTest.forEach((el, index) => {
+        el.addEventListener('click', (event) =>{
+            event.preventDefault()
+            updateClass(countTest, index)
+            updateList(containetSlider, index)
+            indexTest = index
+            inst = index
+        })
+    })  
+}
+//реакція автоматичного переліку на клік
+const updateClass = (array, index) => {
+    array.forEach((el, i) => {
+        if(index === i) {
+            el.classList.add('active')
+        } else {
+            el.classList.remove('active')
+        }
+    })
+}
+//реакція автоматичного слайдеру на клік
+const updateList = (array, index) => {
+    Array.from(array.children).forEach((el, i) => {
+        if(index === i) {
+            let gap = parseInt (window.getComputedStyle(array).gap) 
+            if(isNaN(gap)) { 
+                gap = 0
+            }
+            for(let a = 0; a <= i; a++) {
+                let widthSlide = parseInt(window.getComputedStyle(array.children[a]).width)
+                const firstChild = array.children[a]
+                const newFirstChild = firstChild.cloneNode(true)
+                array.append(newFirstChild)
+                array.style.transition = 'transform 0.2s ease-in-out'
+                offset = (widthSlide + gap) * -(index)
+                array.style.transform = `translateX(${offset}px)`
+            }    
+        }
+    })
+}
+
+//Автоматичний слайдер
+const countTestFunc = (countTest, containetSlider, testItem) => {
+    inst++
+    indexTest++
+
+    if(indexTest >= countTest.length) {
+        countTest[indexTest - 1].classList.remove('active')
+        indexTest = 0 
+        countTest[indexTest].classList.add('active') 
+    } else if (indexTest > 0) {
+        countTest[indexTest - 1].classList.remove('active')
+        countTest[indexTest].classList.add('active')
+    }    
+
+    if(inst > containetSlider.children.length) {
+        setTimeout(() =>{ 
+            containetSlider.style.transition = 'none'; 
+            containetSlider.style.transform = `translateX(${0}px)` 
+            for(let i = containetSlider.length - 1; i >= 0; i--) {
+                containetSlider.children[i].remove()
+            }
+        }, 1)
+        inst = 0
+        offset = 0 
+    } else if(inst > 0) {
+        let gap = parseInt (window.getComputedStyle(containetSlider).gap) 
+        if(isNaN(gap)) { 
+            gap = 0
+        }
+        if(inst === 1) {
+            widthSlide = parseInt(window.getComputedStyle(containetSlider.children[inst - 1]).width)
+            firstChild = containetSlider.children[inst - 1]
+            newFirstChild = firstChild.cloneNode(true)
+            containetSlider.append(newFirstChild)
+        }
+        widthSlide = parseInt(window.getComputedStyle(containetSlider.children[inst]).width)
+        firstChild = containetSlider.children[inst]
+        newFirstChild = firstChild.cloneNode(true)
+        containetSlider.append(newFirstChild)
+        containetSlider.style.transition = 'transform 0.5s ease-in-out'
+        offset = (widthSlide + gap) * -(inst)
+        containetSlider.style.transform = `translateX(${offset}px)`
+    }   
+} 
+
+
+setInterval(() => {
+    countTestFunc(countTest, containetSlider, testItem)
+}, 4000)
+clickEl(countTest, containetSlider)
