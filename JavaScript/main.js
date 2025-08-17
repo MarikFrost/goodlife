@@ -1,4 +1,4 @@
-import slideModule from './../modules/myCustomSlider.mjs'
+//import slideModule from './../modules/myCustomSlider.mjs'
 
 /*********************Кнопка пошуку********************/
 const searchButton = document.querySelector('.search-icon')
@@ -35,7 +35,7 @@ const slideHero = document.querySelector('.slide-hero')
 const arrayCountSlider = document.querySelectorAll('.count-slide')
 let contIndex = 0
 
-slideModule(slideHero, 4, 0.5)
+//slideModule(slideHero, 4, 0.5)
 setInterval(() => {
     countSlide(arrayCountSlider)
 }, 4000)
@@ -210,7 +210,7 @@ const sliderStayingBlock = document.querySelector('.slider-staying-block')
 const countSlideStaying = document.querySelectorAll('.count-slide-staying')
 let contIndexStaying = 0
 
-slideModule(sliderStayingBlock, 3, 0.5)
+//slideModule(sliderStayingBlock, 3, 0.5)
 setInterval(() => {
     countStaying(countSlideStaying)
 }, 3000)
@@ -281,7 +281,7 @@ if(window.innerWidth <= 900) {
 }
 //Запускаємо слайдер
  if(window.innerWidth < 800) {
-    slideModule(newReviewUsers, 3, 1)
+    //slideModule(newReviewUsers, 3, 1)
  }
 /**************Слайдер Review************* */
 
