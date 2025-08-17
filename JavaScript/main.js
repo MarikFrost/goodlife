@@ -252,10 +252,3 @@ if(window.innerWidth <= 900) {
 /**************Слайдер Review************* */
 
 
-
-const containetSlider = document.querySelector('.containetSlider')
-const countTest = document.querySelectorAll('.countTest')
-
-automaticSliderWithManualControl(countTest, containetSlider, 4, 0.5)
-
-

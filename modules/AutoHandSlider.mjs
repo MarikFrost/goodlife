@@ -2,8 +2,9 @@
 Автоматичний слайдер з ручним управлінням приймає: 
 1) Блок ручного управління
 2) Блок зі слайдами
-3) Інтервал між анімацією в секундах
-4) Час анімації
+3) Класс який додаємо щоб зрозуміти яка кнопка була натиснута
+4) Інтервал між анімацією в секундах
+5) Час анімації
 */
 const automaticSliderWithManualControl = (countHandButton, blockWithItemSlide, classAdd, timeOfMoveSlide, timeOfAnimation) => {
 
@@ -44,7 +45,7 @@ const automaticSliderWithManualControl = (countHandButton, blockWithItemSlide, c
                     gap = 0
                 }
                 for(let a = 0; a <= i; a++) {
-                    let widthSlide = parseInt(window.getComputedStyle(blockWithItemSlide.children[index]).width)
+                    widthSlide = blockWithItemSlide.children[index].getBoundingClientRect().width
                     copyClonePast(blockWithItemSlide, a) //виклик функції копіювати/клопунати/вставити
                     blockWithItemSlide.style.transition = 'transform 0.2s ease-in-out'
                     offset = (widthSlide + gap) * -(index)
@@ -111,19 +112,20 @@ const automaticSliderWithManualControl = (countHandButton, blockWithItemSlide, c
             inst = 0
             offset = 0 
         } else if(inst > 0) {
-            let gap = parseInt (window.getComputedStyle(blockWithItemSlide).gap) 
+            let gap = blockWithItemSlide.getBoundingClientRect().gap
             if(isNaN(gap)) { 
                 gap = 0
             }
             if(inst === 1) {
                 copyClonePast(blockWithItemSlide, inst - 1) //викликаємо функцію копіювати/клонувати/вставити
             }
-            widthSlide = parseInt(window.getComputedStyle(blockWithItemSlide.children[inst]).width)
+            widthSlide = blockWithItemSlide.children[inst].getBoundingClientRect().width
             copyClonePast(blockWithItemSlide, inst) //викликаємо функцію копіювати/клонувати/вставити
             blockWithItemSlide.style.transition = `transform ${timeOfAnimation}s ease-in-out`
             offset = (widthSlide + gap) * -(inst)
             blockWithItemSlide.style.transform = `translateX(${offset}px)`
         }   
+        console.log(widthSlide)
     }, timeOfMoveSlide)
     clickEl(countHandButton, blockWithItemSlide)
 } 

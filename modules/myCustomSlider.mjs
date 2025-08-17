@@ -7,15 +7,12 @@
 const slideModule = (slider, interval, animationTime) => {
     interval = interval * 1000
     setInterval(() => {
-        /* let widthSlide = window.getComputedStyle(slide[0]).width
-        widthSlide = parseInt(widthSlide)*/
-        /*Закоментовано теж саме що і код нижче. За допомогою цього коду ми можемо
+        /*За допомогою цього коду ми можемо
         вказазувати -1 аргумент (а саме сам один слайд) щоб дізнатись його ширину*/
-        let widthSlide = parseInt(
-            window.getComputedStyle(slider.firstElementChild).width
-        ) //дізнаємось ширину слайда, щоб розуміти на скільки зсовувати
+        let widthSlide = slider.firstElementChild.getBoundingClientRect().width
+        //дізнаємось ширину слайда, щоб розуміти на скільки зсовувати
         
-        let gap = parseInt (window.getComputedStyle(slider).gap) 
+        let gap = parseInt(window.getComputedStyle(slider).gap) 
         //дузнаємось відступ між слайдами
         if(isNaN(gap)) { //якщо gap не заданий в CSS то він буде NaN
             gap = 0
