@@ -1475,7 +1475,7 @@ footer {
 }
 .containe{
     margin: 0 auto;
-    width: 501px;
+    width: 200px;
     overflow: hidden;
 }
 .containetSlider{
@@ -1484,7 +1484,7 @@ footer {
 }
 .testItem{
     height: 300px;
-    width: 501px;
+    width: 200px;
     flex-shrink: 0;
     text-align: center;
     line-height: 300px;

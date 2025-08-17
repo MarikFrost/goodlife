@@ -14,25 +14,44 @@ const automaticSliderWithManualControl = (countHandButton, blockWithItemSlide, c
     let firstChild
     let newFirstChild
     let widthSlide
-
+/*****************Свайпи - поки не розібрався взвгал */
     let startX = 0
 
-    blockWithItemSlide.addEventListener('mousedown', e => {
+blockWithItemSlide.addEventListener('mousedown', e => { // Для миші
     startX = e.clientX
-    })
+})
+blockWithItemSlide.addEventListener('mouseup', e => {
+    handleSwipe(e.clientX)
+})
 
-    blockWithItemSlide.addEventListener('mouseup', e => {
-        
-    let diff = e.clientX - startX
-    console.log(diff)
+
+blockWithItemSlide.addEventListener('touchstart', e => { // Для тачів (телефон)
+    startX = e.touches[0].clientX
+})
+blockWithItemSlide.addEventListener('touchend', e => {
+    handleSwipe(e.changedTouches[0].clientX)
+})
+
+function handleSwipe(endX) {
+    let diff = endX - startX
     if (diff > 50) {
-        updateClass(countHandButton, index + 1)
-        updateList(blockWithItemSlide, index + 1)
+        console.log('Назад')
+        inst = inst - 1
+        indexTest = inst
+        if(inst >= 0) {
+            updateClass(countHandButton, indexTest)
+            updateList(blockWithItemSlide, inst)
+        }   
     } else if (diff < -50) {
-        updateClass(countHandButton, index - 1)
-        updateList(blockWithItemSlide, index - 1)
+        console.log('Вперед')
+        inst = inst + 1
+        indexTest = inst
+        if(inst < blockWithItemSlide.children.length) {
+            updateClass(countHandButton, indexTest)
+            updateList(blockWithItemSlide, inst)
+        } 
     }
-    })
+}
 
 
     /*
