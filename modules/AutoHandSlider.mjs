@@ -1,6 +1,6 @@
 /*
 Автоматичний слайдер з ручним управлінням приймає: 
-1) Блок ручного управління
+1) Всі кнопки ручного управління
 2) Блок зі слайдами
 3) Класс який додаємо щоб зрозуміти яка кнопка була натиснута
 4) Інтервал між анімацією в секундах
@@ -14,6 +14,26 @@ const automaticSliderWithManualControl = (countHandButton, blockWithItemSlide, c
     let firstChild
     let newFirstChild
     let widthSlide
+
+    let startX = 0
+
+    blockWithItemSlide.addEventListener('mousedown', e => {
+    startX = e.clientX
+    })
+
+    blockWithItemSlide.addEventListener('mouseup', e => {
+        
+    let diff = e.clientX - startX
+    console.log(diff)
+    if (diff > 50) {
+        updateClass(countHandButton, index + 1)
+        updateList(blockWithItemSlide, index + 1)
+    } else if (diff < -50) {
+        updateClass(countHandButton, index - 1)
+        updateList(blockWithItemSlide, index - 1)
+    }
+    })
+
 
     /*
     Функція обробника натиску. Приймає:
@@ -125,7 +145,6 @@ const automaticSliderWithManualControl = (countHandButton, blockWithItemSlide, c
             offset = (widthSlide + gap) * -(inst)
             blockWithItemSlide.style.transform = `translateX(${offset}px)`
         }   
-        console.log(widthSlide)
     }, timeOfMoveSlide)
     clickEl(countHandButton, blockWithItemSlide)
 } 

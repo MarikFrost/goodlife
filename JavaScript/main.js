@@ -270,3 +270,7 @@ vp800.addEventListener("change", widthChange800);
 /**************Слайдер Review************* */
 
 
+const count = document.querySelectorAll('.countTest')
+const slide = document.querySelector('.containetSlider')
+automaticSliderWithManualControl(count, slide, 'active', 4, 0.5)
+
