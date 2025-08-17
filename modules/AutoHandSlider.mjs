@@ -7,7 +7,7 @@
 5) Час анімації
 */
 const automaticSliderWithManualControl = (countHandButton, blockWithItemSlide, classAdd, timeOfMoveSlide, timeOfAnimation) => {
-
+    let len = blockWithItemSlide.children.length
     let indexTest = 0
     let inst = 0
     let offset = 0
@@ -38,18 +38,29 @@ function handleSwipe(endX) {
         console.log('Назад')
         inst = inst - 1
         indexTest = inst
-        if(inst >= 0) {
+        if(inst < 0) {
+            inst = len - 1
+            indexTest = inst
             updateClass(countHandButton, indexTest)
             updateList(blockWithItemSlide, inst)
-        }   
+        } else {
+            updateClass(countHandButton, indexTest)
+            updateList(blockWithItemSlide, inst)
+        }    
     } else if (diff < -50) {
         console.log('Вперед')
         inst = inst + 1
         indexTest = inst
-        if(inst < blockWithItemSlide.children.length) {
+
+        if(inst >= len) {
+            inst = 0
+            indexTest = inst
             updateClass(countHandButton, indexTest)
             updateList(blockWithItemSlide, inst)
-        } 
+        } else {
+            updateClass(countHandButton, indexTest)
+            updateList(blockWithItemSlide, inst)
+        }  
     }
 }
 
