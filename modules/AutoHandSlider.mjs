@@ -90,7 +90,7 @@ function handleSwipe(endX) {
     const updateList = (blockWithItemSlide, index) => { 
         Array.from(blockWithItemSlide.children).forEach((el, i) => {
             if(index === i) {
-                let gap = parseInt (window.getComputedStyle(blockWithItemSlide).gap) 
+                let gap = parseInt(window.getComputedStyle(blockWithItemSlide).gap) 
                 if(isNaN(gap)) { 
                     gap = 0
                 }
